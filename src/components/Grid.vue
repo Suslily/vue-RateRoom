@@ -1,11 +1,19 @@
 <template>
-            <div class="grid-wrap">
+            <div id="grid-wrap">
                <Food     v-if="currentComponent === 'food'"></Food>
                <Weight   v-if="currentComponent === 'weight'"></Weight>
                <Toilet   v-if="currentComponent === 'toilet'"></Toilet>
                <Brushing v-if="currentComponent === 'brushing'"></Brushing>
             <ul>
-                <li>
+                <!-- v-for="icon in icons" :key="icon.id" -->
+                <li v-for="item in items" :key="item.id">
+                    <picture class="list-ikon">
+                       <!-- <source :srcset= 'image' type="image/webp"> -->
+                        <img v-bind:src='item.icon'>
+                    </picture>
+                    <button class="list-name" v-scroll-to="'#bar-chart'" @click="currentComponent = 'food'">{{item.name}}</button>
+                </li>
+                <!-- <li>
                         <picture class="list-ikon">
                             <source srcset="@/assets/images/cat-food.webp" type="image/webp">
                             <img src="@/assets/images/cat-food.png">
@@ -33,7 +41,7 @@
                             <img src="@/assets/images/grooming.png">
                         </picture>
                         <button class="list-name" v-scroll-to="'#bar-chart'" @click="currentComponent = 'brushing'">ブラッシング</button>
-                </li>
+                </li> -->
             </ul>
         </div>
 </template>
@@ -53,13 +61,21 @@ export default {
     },
     data(){
         return{
+            items:[
+                { name:'ご飯',icon:require('@/assets/images/cat-food.png') },
+                { name:'体重',icon:require('@/assets/images/cat-weight.png')},
+                { name:'トイレの回数',icon:require('@/assets/images/cat-toilet.png')},
+                { name:'ブラッシング',icon:require('@/assets/images/grooming.png')}
+            ],
             currentComponent: "food",
         };
     }
 }
+
+
 </script>
 <style lang="scss" scoped>
-.grid-wrap{
+#grid-wrap{
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
