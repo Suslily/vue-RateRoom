@@ -8,10 +8,9 @@
                 <!-- v-for="icon in icons" :key="icon.id" -->
                 <li v-for="item in items" :key="item.id">
                     <picture class="list-ikon">
-                       <!-- <source :srcset= 'image' type="image/webp"> -->
                         <img v-bind:src='item.icon'>
                     </picture>
-                    <button class="list-name" v-scroll-to="'#bar-chart'" @click="currentComponent = 'food'">{{item.name}}</button>
+                    <button class="list-name" v-scroll-to="'#bar-chart'" @click="currentComponent = item.componentName">{{item.name}}</button>
                 </li>
                 <!-- <li>
                         <picture class="list-ikon">
@@ -62,12 +61,12 @@ export default {
     data(){
         return{
             items:[
-                { name:'ご飯',icon:require('@/assets/images/cat-food.png') },
-                { name:'体重',icon:require('@/assets/images/cat-weight.png')},
-                { name:'トイレの回数',icon:require('@/assets/images/cat-toilet.png')},
-                { name:'ブラッシング',icon:require('@/assets/images/grooming.png')}
+                { name:'ご飯',icon:require('@/assets/images/cat-food.png'),componentName:'food' },
+                { name:'体重',icon:require('@/assets/images/cat-weight.png'),componentName:'weight'},
+                { name:'トイレの回数',icon:require('@/assets/images/cat-toilet.png'),componentName:'toilet'},
+                { name:'ブラッシング',icon:require('@/assets/images/grooming.png'),componentName :'brushing'}
             ],
-            currentComponent: "food",
+            currentComponent: 'food',
         };
     }
 }
